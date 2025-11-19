@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container"
+    <div class="container">
         <h1> School Registration Portal</h1>
         <p>Select a registration form below:</p>
         <a class="btn" href="student_regristration.html">Student Regirstration</a>
