@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Instructor Dashboard</h2>
+
+<section>
+    <p><strong>Name:</strong> {{ instructor.first_name }} {{ instructor.last_name }}</p>
+    <p><strong>Email:</strong> {{ instructor.email }}</p>
+    <p><strong>Office:</strong>
+        {% if instructor.office_building_name %}
+            {{ instructor.office_building_name }} – Room {{ instructor.office_room_number }}
+        {% else %}
+            Not assigned
+        {% endif %}
+    </p>
+</section>
+
+<h3>My Sections</h3>
+<table>
+    <tr>
+        <th>Course</th>
+        <th>Meeting</th>
+        <th>Location</th>
+        <th>Actions</th>
+    </tr>
+    {% for s in sections %}
+    <tr>
+        <td>{{ s.course_code }} - {{ s.course_name }}</td>
+        <td>{{ s.meeting_time }}</td>
+        <td>
+            {% if s.building_name %}
+                {{ s.building_name }} – Room {{ s.room_number }}
+            {% else %}
+                TBA
+            {% endif %}
+        </td>
+        <td>
+            <a href="{{ url_for('instructor_section', selection_id=s.selection_id) }}">View students</a> |
+            <a href="{{ url_for('instructor_attendance', selection_id=s.selection_id) }}">Attendance</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

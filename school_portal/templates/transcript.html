@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Unofficial Transcript</h2>
+
+<p><strong>Name:</strong> {{ student.first_name }} {{ student.last_name }}</p>
+<p><strong>Major:</strong> {{ student.major }}</p>
+<p><strong>GPA:</strong> {{ "%.2f"|format(student.gpa) if student.gpa is not none else "N/A" }}</p>
+
+<table>
+    <tr><th>Course</th><th>Grade</th></tr>
+    {% for row in transcript_rows %}
+    <tr>
+        <td>{{ row.course_code }} - {{ row.course_name }}</td>
+        <td>{{ row.grade if row.grade is not none else "N/A" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

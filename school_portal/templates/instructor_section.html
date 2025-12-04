@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Section: {{ section.course_code }} - {{ section.course_name }}</h2>
+<p>
+    <strong>Meeting:</strong> {{ section.meeting_time }}<br>
+    <strong>Location:</strong>
+    {% if section.building_name %}
+        {{ section.building_name }} – Room {{ section.room_number }}
+    {% else %}
+        TBA
+    {% endif %}
+</p>
+
+{% if report.avg_grade %}
+<p><strong>Class Average:</strong> {{ "%.2f"|format(report.avg_grade) }}</p>
+<p><strong>High Score:</strong> {{ report.max_grade }}</p>
+<p><strong>Low Score:</strong> {{ report.min_grade }}</p>
+{% endif %}
+
+<p>
+    <a href="{{ url_for('instructor_attendance', selection_id=section.selection_id) }}">
+        Take today's attendance
+    </a>
+</p>
+
+<form method="post">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Current Grade</th>
+            <th>Update Grade</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.last_name }}, {{ s.first_name }}</td>
+            <td>{{ s.grade if s.grade is not none else 'N/A' }}</td>
+            <td>
+                <input type="number" name="grade_{{ s.enrollment_id }}" step="0.1" min="0" max="100"
+                       value="{{ s.grade if s.grade is not none else '' }}">
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="submit">Save Grades</button>
+</form>
+{% endblock %}

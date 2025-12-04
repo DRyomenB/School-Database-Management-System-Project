@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Attendance for {{ section.course_code }} - {{ section.course_name }}</h2>
+<p><strong>Date:</strong> {{ today }}</p>
+
+<form method="post">
+<table>
+    <tr><th>Name</th><th>Status</th></tr>
+    {% for s in students %}
+    <tr>
+        <td>{{ s.last_name }}, {{ s.first_name }}</td>
+        <td>
+            {% set current = status_map.get(s.student_id) %}
+            <label>
+                <input type="radio" name="status_{{ s.student_id }}" value="Present"
+                       {% if current == 'Present' %}checked{% endif %}>
+                Present
+            </label>
+            <label>
+                <input type="radio" name="status_{{ s.student_id }}" value="Absent"
+                       {% if current == 'Absent' %}checked{% endif %}>
+                Absent
+            </label>
+            <label>
+                <input type="radio" name="status_{{ s.student_id }}" value="Late"
+                       {% if current == 'Late' %}checked{% endif %}>
+                Late
+            </label>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<button type="submit">Save Attendance</button>
+</form>
+
+{% if stats.present_count or stats.absent_count or stats.late_count %}
+<h3>Overall Attendance Summary</h3>
+<ul>
+    <li>Present: {{ stats.present_count or 0 }}</li>
+    <li>Absent: {{ stats.absent_count or 0 }}</li>
+    <li>Late: {{ stats.late_count or 0 }}</li>
+</ul>
+{% endif %}
+{% endblock %}

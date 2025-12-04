@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Sections for {{ course.course_code }} - {{ course.course_name }}</h2>
+<p>Add or adjust class meeting times for this specific course. Each section may have different instructors, rooms, or times.</p>
+
+<a class="button" href="{{ url_for('admin_add_section', course_id=course.course_id) }}">
+    Add Section
+</a>
+
+<table>
+    <tr>
+        <th>Meeting Time</th>
+        <th>Instructor</th>
+        <th>Room</th>
+        <th>Seats</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for s in sections %}
+    <tr>
+        <td>{{ s.meeting_time }}</td>
+        <td>{{ s.instructor_name or 'TBA' }}</td>
+        <td>
+            {% if s.building_name %}
+            {{ s.building_name }} – {{ s.room_number }}
+            {% else %}
+            TBA
+            {% endif %}
+        </td>
+        <td>{{ s.enrolled }}/{{ s.capacity }}</td>
+        <td>
+            <a href="{{ url_for('admin_edit_section', selection_id=s.selection_id) }}">Edit</a>
+            |
+            <a href="{{ url_for('admin_delete_section', selection_id=s.selection_id) }}"
+            onclick="return confirm('Are you sure?');">Delete</a>
+        </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

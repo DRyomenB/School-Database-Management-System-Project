@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Instructors</h2>
+
+<a class="button" href="{{ url_for('admin_add_instructor') }}">Add Instructor</a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Title</th>
+        <th>Department</th>
+        <th>Office</th>
+        <th>Actions</th>
+    </tr>
+    {% for i in instructors %}
+    <tr>
+        <td>{{ i.employee_id }}</td>
+        <td>{{ i.last_name }}, {{ i.first_name }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.position_title }}</td>
+        <td>{{ i.department_name }}</td>
+        <td>
+            {% if i.office_building_name %}
+                {{ i.office_building_name }} – Room {{ i.office_room_number }}
+            {% else %}
+                None
+            {% endif %}
+        </td>
+        <td>
+            <a href="{{ url_for('admin_edit_instructor', employee_id=i.employee_id) }}">Edit</a> |
+            <a href="{{ url_for('admin_delete_instructor', employee_id=i.employee_id) }}"
+               onclick="return confirm('Are you sure?');">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

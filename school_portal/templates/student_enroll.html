@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Enroll in a Course</h2>
+
+<form method="post">
+    <label>Select a section to enroll:</label>
+    <select name="selection_id" required>
+        {% for s in sections %}
+        <option value="{{ s.selection_id }}">
+            {{ s.course_code }} - {{ s.course_name }}
+            ({{ s.meeting_time }}
+            {% if s.building_name %}
+                @ {{ s.building_name }} {{ s.room_number }}
+            {% endif %}
+            — Seats: {{ s.enrolled }}/{{ s.capacity }}
+            {% if s.enrolled >= s.capacity %}
+                — FULL
+            {% endif %}
+            )
+        </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Enroll</button>
+</form>
+
+{% endblock %}
