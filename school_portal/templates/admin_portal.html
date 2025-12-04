@@ -1,0 +1,82 @@
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Administrator Portal</title>
+    <link rel='stylesheet' href='{{ url_for('static', filename='style.css') }}'>
+</head>
+<body>
+
+<header>
+    <h1>Student Database Management System</h1>
+    <nav>
+        <span>Role:</span>
+        <a href-"{{url_for('home') }}">Home</a>
+        <a href-"{{url_for('student_portal') }}">Student</a>
+        <a href-"{{url_for('instructor_portal') }}">Instructor</a>
+        <a href-"{{url_for('admin_portal') }}">Administrator</a>
+    </nav>
+</header>
+
+<main>
+
+    {# Flash messages, if you use them #}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class='flash'>
+          {% for message in messages %}
+            <li>{{ message }</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+  <h2>Administrator Dashboard</h2>
+  <p>
+      This page is for <strong>administrators</strong>such as the dean, principal, HR, and registrars to manage global data and policies.
+  </p>
+  
+  <div class='card'>
+
+      <div class='card'>
+        <h3>User Management</h3>
+      <p>
+          Create, update, or deactivate student, professor, staff accounts and assign appropriate roles.
+      </p>
+      <a href='#' class='button'>Manage Users</a>
+  </div>
+
+   <div class='card'>
+      <h3>Department & Course Setup</h3>
+      <p>
+          Configure departments, academic programs, and course offerings for each term.
+      </p>
+      <a href='#' class='button'>Configure Courses</a>
+   </div>
+
+   <div class='card'>
+      <h3>Reports & Analytics</h3>
+      <p>
+          Generate enrollment preformance, and attendance reports using data from the central database.
+      </p>
+      <a href='#' class='button'>Run Reports</a>
+   </div>
+
+   <div class='card'>
+        <h3>Policies & System Settings</h3>
+      <p>
+          Maintain academic policies, grading schemes, access rules, and other system-wide configuration.
+      </p>
+        <a href='#' class='button'>Adjust Settings</a>
+   </div>
+
+</div>
+  
+</main>
+
+<footer>
+    School Database Managament System Project
+</footer>
+
+
+</body>
+</html>
