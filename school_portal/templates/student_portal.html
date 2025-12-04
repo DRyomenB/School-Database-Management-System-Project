@@ -1,0 +1,78 @@
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Student Portal</title>
+    <link rel='stylesheet' href='{{ url_for('static', filename='style.css') }}'>
+</head>
+<body>
+
+<header>
+    <h1>Student Database Management System</h1>
+    <nav>
+        <span>Role:</span>
+        <a href-"{{url_for('home') }}">Home</a>
+        <a href-"{{url_for('student_portal') }}">Student</a>
+        <a href-"{{url_for('instructor_portal') }}">Instructor</a>
+        <a href-"{{url_for('admin_portal') }}">Administrator</a>
+    </nav>
+</header>
+
+<main>
+
+    {# Flash messages, if you use them #}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class='flash'>
+          {% for message in messages %}
+            <li>{{ message }</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+  <h2>Student Dashboard</h2>
+  <p>
+
+  <div class='card'>
+      <h3>My Profile</h3>
+      <p>
+          View and update personal details such as contact information and emergency contracts.
+      </p>
+      <a href='#' class='button'>Open Profile</a>
+  </div>
+
+   <div class='card'>
+      <h3>Course Registration</h3>
+      <p>
+          Search available coursed, add or drop classes, and view your current schedule.
+      </p>
+      <a href='#' class='button'>Register for Courses</a>
+   </div>
+
+   <div class='card'>
+      <h3>Grades & Transcripts</h3>
+      <p>
+          Check your current grades and academic history, and generate an unofficial transcript.
+      </p>
+      <a href='#' class='button'>View Grades</a>
+   </div>
+
+   <div class='card'>
+        <h3>Billing & Payments</h3>
+      <p>
+          Review tuition balance, payment history, and downloadale billing statements.
+      </p>
+        <a href='#' class='button'>View Billing</a>
+   </div>
+
+</div>
+  
+</main>
+
+<footer>
+    School Database Managament System Project
+</footer>
+
+
+</body>
+</html>
