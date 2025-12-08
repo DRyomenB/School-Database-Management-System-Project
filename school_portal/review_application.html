@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Review Applications</title>
@@ -21,9 +21,9 @@
     <main>
 
         {# Flash message (e.g., 'Application Accpeted') #}
-        {% with message =  get_flashed_messages() %}
+        {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <ul class="flash">
+                <ul class="flash-messages">
                     {% for message in messages %}
                         <li>{{ message }}</li>
                     {% endfor %}
@@ -31,21 +31,26 @@
             {% endif %}
         {% endwith %}
 
-        <h2>Review Applications</h2>
-        <p>
-            This page is used by administrators to <strong>review, accept, or refuse</strong>
-            applications submitted to the system (e.g., student admissions, staff hiring, etc.).
-        </p>
-        {# Optional search / filter bar #}
-            <form method="get" class="search-form">
-            <label for="query">Search Applications:</label>
-            <input type="text" id="query" name="q" value="{{ request.args.get('q', '') }}">
-            <button type="submit" class="button">Search</button>
-        </form>
-        <div class="card">
+         <section class="review-header">
+            <h2>Review Applications</h2>
+            <p>
+                This page is used by administrators to <strong>review, accept, or refuse</strong>
+                applications submitted to the system (e.g., student admissions, staff hiring, etc.).
+            </p>
+            
+            {# Optional search / filter bar #}
+                <form method="get" class="search-form">
+                    <label for="query">Search Applications:</label>
+                    <input type="text" id="query" name="q" value="{{ request.args.get('q', '') }}">
+                    <button type="submit" class="button">Search</button>
+            </form>
+        </section>
+
+        <section class="card">
             <h3>Pending Applications</h3>
             <p>Applications waiting for decision. Use the buttons to accept or refuse.</p>   
         </div>
+        
         <div class="card">
             <h3>Status Legend</h3>
             <p>
