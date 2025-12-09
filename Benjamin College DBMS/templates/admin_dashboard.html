@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<p>Welcome, admin!</p>
+<ul>
+    <li><a href="{{ url_for('admin_students') }}">Manage Students</a></li>
+    <li><a href="{{ url_for('admin_instructors') }}">Manage Instructors</a></li>
+    <li><a href="{{ url_for('admin_courses') }}">Manage Courses</a></li>
+    <li><a href="{{ url_for('admin_budgets') }}">View Department Budgets</a></li>
+    <li><a href="{{ url_for('admin_sql_console') }}">Run SQL Queries</a></li>
+    <li><a href="{{ url_for('admin_payroll') }}">Payroll</a></li>
+</ul>
+{% endblock %}

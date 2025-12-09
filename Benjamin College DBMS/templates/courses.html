@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Courses</h2>
+<a class="button" href="{{ url_for('admin_add_course') }}">Add Course</a>
+<table>
+    <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Credit</th>
+        <th>Department</th>
+        <th>Scheduled Sections</th>
+        <th>Actions</th>
+    </tr>
+    {% for c in courses %}
+    <tr>
+        <td>{{ c.course_code }}</td>
+        <td>{{ c.course_name }}</td>
+        <td>{{ c.credit }}</td>
+        <td>{{ c.department_name }}</td>
+        <td>{{ c.meeting_time }}</td>
+        <td>
+            {% if section_map.get(c.course_id) %}
+                <ul>
+                    {% for s in section_map[c.course_id] %}
+                    <li>
+                        {{ s.meeting_time }}
+                        {% if s.instructor_name %}
+                            : {{ s.instructor_name }}
+                        {% endif %}
+                        {% if s.building_name %}
+                            , {{ s.building_name }} {{ s.room_number }}
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <em>No sections scheduled</em>
+            {% endif %}
+        </td>
+        <td>
+            <a href="{{ url_for('admin_edit_course', course_id=c.course_id) }}">Edit</a> |
+            <a href="{{ url_for('admin_delete_course', course_id=c.course_id) }}"
+               onclick="return confirm('Are you sure?');">Delete</a> |
+            <a href="{{ url_for('admin_course_sections', course_id=c.course_id) }}">
+                Manage Sections
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

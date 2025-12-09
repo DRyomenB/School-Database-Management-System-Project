@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Sections for {{ course.course_code }} – {{ course.course_name }}</h1>
+<a href="{{ url_for('admin_add_section', course_id=course.course_id) }}" class="btn">+ Add Section</a>
+<table border="1" cellpadding="6">
+<thead>
+<tr>
+    <th>ID</th>
+    <th>Instructor</th>
+    <th>Meeting</th>
+    <th>Capacity</th>
+    <th>Enrolled</th>
+    <th>Room</th>
+    <th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{% for s in sections %}
+<tr>
+    <td>{{ s.selection_id }}</td>
+    <td>{{ s.instructor_name or "TBA" }}</td>
+    <td>{{ s.meeting_label }}</td>
+    <td>{{ s.capacity }}</td>
+    <td>{{ s.enrolled }}</td>
+    <td>{{ s.building_name }} – Room {{ s.room_number }}</td>
+    <td>
+        <a href="{{ url_for('admin_edit_section', selection_id=s.selection_id, course_id=course.course_id) }}">Edit</a> |
+        <a href="{{ url_for('admin_delete_section', selection_id=s.selection_id, course_id=course.course_id) }}"
+           onclick="return confirm('Delete section?');">Delete</a>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<a href="{{ url_for('admin_courses') }}" class="btn">Back</a>
+{% endblock %}
