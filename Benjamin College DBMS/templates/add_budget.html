@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="page-title">Add Budget</h2>
+<form method="POST" class="form-box">
+    <label>Department</label>
+    <select name="department_id" required>
+        {% for d in departments %}
+        <option value="{{ d.department_id }}">{{ d.department_name }}</option>
+        {% endfor %}
+    </select>
+    <label>Fiscal Year</label>
+    <input type="text" name="fiscal_year" placeholder="2024-2025" required>
+    <label>Allocated Amount</label>
+    <input type="number" name="allocated_amount" step="0.01" required>
+    <label>Spent Amount (optional)</label>
+    <input type="number" name="spent_amount" step="0.01">
+    <button class="btn-secondary" type="submit">Save</button>
+</form>
+{% endblock %}

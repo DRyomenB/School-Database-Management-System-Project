@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Performance Reviews – {{ instructor.first_name }} {{ instructor.last_name }}</h2>
+<p>
+    <a class="button" href="{{ url_for('admin_add_review', employee_id=instructor.employee_id) }}">
+        Add Review
+    </a>
+</p>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Rating</th>
+        <th>Comments</th>
+    </tr>
+    {% for r in reviews %}
+    <tr>
+        <td>{{ r.review_date }}</td>
+        <td>{{ r.rating }}</td>
+        <td>{{ r.comments }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<p><a href="{{ url_for('admin_instructors') }}">← Back to Instructors</a></p>
+{% endblock %}

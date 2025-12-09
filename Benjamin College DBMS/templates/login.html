@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+    <label>Username
+        <input type="text" name="username" required>
+    </label>
+    <label>Password
+        <input type="password" name="password" required>
+    </label>
+    <button type="submit">Login</button>
+</form>
+<p style="margin-top: 20px;">
+    Not a student yet?
+    <a href="{{ url_for('apply') }}"><strong>Apply for Admission</strong></a>
+</p>
+<p>Demo accounts:</p>
+<ul>
+    <li>Admin: admin / password</li>
+    <li>Student: nathan / password</li>
+    <li>Instructor: alice / password</li>
+</ul>
+{% endblock %}

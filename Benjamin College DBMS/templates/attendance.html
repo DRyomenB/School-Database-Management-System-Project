@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ section.course_code }} – {{ section.course_name }}</h2>
+<p><strong>Meeting:</strong> {{ section.meeting_label }}
+   ({{ section.building_name }} – Room {{ section.room_number }})</p>
+<h3>Attendance for {{ today }}</h3>
+<form method="POST">
+<table border="1" cellpadding="6">
+<thead>
+<tr>
+    <th>Student</th>
+    <th>Status</th>
+</tr>
+</thead>
+<tbody>
+{% for st in students %}
+<tr>
+    <td>{{ st.last_name }}, {{ st.first_name }}</td>
+    <td>
+        <select name="status_{{ st.student_id }}">
+            <option value="Present" {% if status_map.get(st.student_id) == 'Present' %}selected{% endif %}>Present</option>
+            <option value="Absent" {% if status_map.get(st.student_id) == 'Absent' %}selected{% endif %}>Absent</option>
+            <option value="Late" {% if status_map.get(st.student_id) == 'Late' %}selected{% endif %}>Late</option>
+        </select>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<p><button type="submit">Save</button></p>
+</form>
+{% if stats %}
+<p>Totals → Present: {{ stats.present_count }},
+Absent: {{ stats.absent_count }},
+Late: {{ stats.late_count }}</p>
+{% endif %}
+<a href="{{ url_for('instructor_dashboard') }}">Back</a>
+{% endblock %}

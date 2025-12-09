@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Review Student Applications</h2>
+<p>Approve/Deny student applications waiting for admission.</p>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class="flash-messages">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endwith %}
+{% if applications %}
+<table border="1" cellpadding="6">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Major</th>
+            <th>Date Submitted</th>
+            <th>Decision</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app.first_name }} {{ app.last_name }}</td>
+            <td>{{ app.email }}</td>
+            <td>{{ app.major }}</td>
+            <td>{{ app.applied_on }}</td>
+            <td>
+                <form method="post" style="display:inline;">
+                    <input type="hidden" name="student_id" value="{{ app.student_id }}">
+                    <input type="hidden" name="decision" value="accept">
+                    <button type="submit">Approve</button>
+                </form>
+                <form method="post" style="display:inline;">
+                    <input type="hidden" name="student_id" value="{{ app.student_id }}">
+                    <input type="hidden" name="decision" value="deny">
+                    <button type="submit" style="background-color:red;color:white;">Deny</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p><em>No pending applications.</em></p>
+{% endif %}
+{% endblock %}

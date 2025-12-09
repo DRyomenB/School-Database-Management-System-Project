@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<p>Welcome, admin!</p>
+<div style="margin-bottom: 20px;">
+    <a href="{{ url_for('review_applications') }}" style="text-decoration:none; color:black;">
+        <div style="display:inline-block; padding:12px 18px; background:#ffcc00; border-radius:8px; font-size:18px; font-weight:bold; border:2px solid #444;">
+            Applicants Pending
+            <span style="background:#d60000; color:#fff; padding:4px 10px; margin-left:10px;
+                         border-radius:50%; font-size:16px;">
+                {{ applicant_count }}
+            </span>
+        </div>
+    </a>
+</div>
+<ul>
+    <li><a href="{{ url_for('admin_students') }}">Manage Students</a></li>
+    <li><a href="{{ url_for('admin_instructors') }}">Manage Instructors</a></li>
+    <li><a href="{{ url_for('admin_courses') }}">Manage Courses</a></li>
+    <li><a href="{{ url_for('admin_budgets') }}">View Department Budgets</a></li>
+    <li><a href="{{ url_for('admin_sql_console') }}">Run SQL Queries</a></li>
+    <li><a href="{{ url_for('admin_payroll') }}">Payroll</a></li>
+</ul>
+{% endblock %}

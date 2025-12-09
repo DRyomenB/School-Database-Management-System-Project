@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Student Application Form</h2>
+<form method="POST">
+    <label>First Name:</label>
+    <input type="text" name="first_name" required><br><br>
+    <label>Last Name:</label>
+    <input type="text" name="last_name" required><br><br>
+    <label>Email:</label>
+    <input type="email" name="email" required><br><br>
+    <label>Intended Major:</label>
+    <input type="text" name="major" required><br><br>
+    <label>Enrollment Status:</label>
+    <select name="status">
+        <option value="Full-time">Full-time</option>
+        <option value="Part-time">Part-time</option>
+    </select><br><br>
+    <button type="submit">Submit Application</button>
+</form>
+<p style="color: green;">{{ message }}</p>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="page-title">SQL Query Console</h2>
+<p class="text-muted">Run <strong>SELECT</strong> queries only. Results will show below.</p>
+<form method="POST">
+    <textarea name="query" rows="4" class="sql-box"
+              placeholder="SELECT * FROM Student;">{{ query }}</textarea>
+    <br>
+    <button class="btn-secondary" type="submit">Execute</button>
+</form>
+{% if results is not none %}
+<hr>
+<h3>Results</h3>
+{% if results %}
+<table class="styled-table">
+    <thead>
+        <tr>
+            {% for h in headers %}
+            <th>{{ h }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in results %}
+        <tr>
+            {% for h in headers %}
+            <td>{{ row[h] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No rows returned.</p>
+{% endif %}
+{% endif %}
+{% endblock %}
