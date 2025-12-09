@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Payroll Records</h2>
+<a href="{{ url_for('admin_add_payroll') }}">Add Payroll Entry</a><br><br>
+<table>
+    <tr>
+        <th>Name</th><th>Date</th><th>Gross</th><th>Deductions</th><th>Net</th><th>Notes</th>
+    </tr>
+    {% for p in payrolls %}
+    <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.pay_date }}</td>
+        <td>${{ "%.2f"|format(p.gross_amount) }}</td>
+        <td>${{ "%.2f"|format(p.deductions) }}</td>
+        <td>${{ "%.2f"|format(p.net_amount) }}</td>
+        <td>{{ p.notes }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
