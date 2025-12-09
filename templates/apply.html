@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+<form method="POST" class="card p-4">
+  <h3 class="mb-3">Submit Student Application</h3>
+
+  <div class="row mb-3">
+    <div class="col">
+      <label>First Name</label>
+      <input type="text" name="first_name" class="form-control" required>
+    </div>
+    <div class="col">
+      <label>Last Name</label>
+      <input type="text" name="last_name" class="form-control" required>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Phone</label>
+    <input type="text" name="phone" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Major</label>
+    <input type="text" name="major" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Graduation Date</label>
+    <input type="date" name="graduation_date" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label>GPA</label>
+    <input type="number" name="gpa" step="0.01" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit Application</button>
+</form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Admin Dashboard - Pending Applications</h2>
+<a href="{{ url_for('admin_logout') }}" class="btn btn-secondary mb-3">Logout</a>
+
+<table class="table table-striped">
+  <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Major</th><th>Status</th><th>Actions</th></tr></thead>
+  <tbody>
+  {% for app in applications %}
+    <tr>
+      <td>{{ app.id }}</td>
+      <td>{{ app.first_name }} {{ app.last_name }}</td>
+      <td>{{ app.email }}</td>
+      <td>{{ app.major }}</td>
+      <td><span class="badge bg-warning">{{ app.status }}</span></td>
+      <td>
+        <a href="{{ url_for('admin_approve', application_id=app.id) }}" class="btn btn-success btn-sm">Approve</a>
+        <a href="{{ url_for('admin_reject', application_id=app.id) }}" class="btn btn-danger btn-sm">Reject</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

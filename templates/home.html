@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="jumbotron text-center py-5">
+  <h1 class="display-4">Benjamin University</h1>
+  <p class="lead">Student Registration Portal</p>
+  <div class="mt-4">
+    <a class="btn btn-success btn-lg mx-2" href="{{ url_for('student_register') }}">Register Now</a>
+    <a class="btn btn-info btn-lg mx-2" href="{{ url_for('student_login') }}">Student Login</a>
+    <a class="btn btn-primary btn-lg mx-2" href="{{ url_for('admin_login') }}">Admin Login</a>
+  </div>
+</div>
+{% endblock %}

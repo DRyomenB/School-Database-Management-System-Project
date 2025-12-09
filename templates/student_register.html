@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Student Registration</h2>
+<p>Complete registration to get your <strong>school email instantly</strong>.</p>
+<form method="POST" class="card p-4">
+  <div class="row">
+    <div class="col-md-6"><label>First Name</label><input type="text" name="first_name" class="form-control" required></div>
+    <div class="col-md-6"><label>Last Name</label><input type="text" name="last_name" class="form-control" required></div>
+  </div>
+  <div class="mb-3"><label>Personal Email</label><input type="email" name="email" class="form-control" placeholder="f.sal@gmail.com" required></div>
+  <div class="mb-3"><label>Phone</label><input type="text" name="phone" class="form-control" required></div>
+  <div class="mb-3"><label>Major</label><input type="text" name="major" class="form-control" required></div>
+  <div class="mb-3"><label>GPA</label><input type="number" name="gpa" step="0.01" class="form-control"></div>
+  <button type="submit" class="btn btn-success btn-lg">Register & Get School Email</button>
+</form>
+{% endblock %}

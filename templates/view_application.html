@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card p-4">
+  <h3>Application #{{ application.id }}</h3>
+  <ul class="list-group list-group-flush mb-3">
+    <li class="list-group-item"><strong>Name:</strong> {{ application.first_name }} {{ application.last_name }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{ application.email }}</li>
+    <li class="list-group-item"><strong>Phone:</strong> {{ application.phone }}</li>
+    <li class="list-group-item"><strong>Major:</strong> {{ application.major }}</li>
+    <li class="list-group-item"><strong>Status:</strong> {{ application.status }}</li>
+    <li class="list-group-item"><strong>Graduation Date:</strong> {{ application.graduation_date }}</li>
+    <li class="list-group-item"><strong>GPA:</strong> {{ application.gpa }}</li>
+  </ul>
+  <a href="{{ url_for('index') }}" class="btn btn-secondary">Back</a>
+</div>
+{% endblock %}

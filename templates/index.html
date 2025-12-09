@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="mb-3 text-end">
+  <a class="btn btn-primary" href="{{ url_for('apply') }}">Submit New Application</a>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Major</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for app in applications %}
+    <tr>
+      <td>{{ app.id }}</td>
+      <td>{{ app.first_name }} {{ app.last_name }}</td>
+      <td>{{ app.email }}</td>
+      <td>{{ app.major }}</td>
+      <td>{{ app.status }}</td>
+      <td>
+        <a class="btn btn-sm btn-info" href="{{ url_for('view_application', application_id=app.id) }}">View</a>
+        {% if app.status == 'submitted' or app.status == 'under_review' %}
+          <a class="btn btn-sm btn-success" href="{{ url_for('approve_application', application_id=app.id) }}">Approve</a>
+          <a class="btn btn-sm btn-warning" href="{{ url_for('reject_application', application_id=app.id) }}">Reject</a>
+        {% endif %}
+        <a class="btn btn-sm btn-danger" href="{{ url_for('delete_application_route', application_id=app.id) }}">Delete</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
